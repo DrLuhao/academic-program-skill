@@ -1,0 +1,7 @@
+interface:
+  display_name: "Academic Program Skill"
+  short_description: "Manage academic research project workflows"
+  default_prompt: "Use $academic-program to initialize or continue a research project with structured files, evidence-traced experiments, code, results, and paper writing."
+
+policy:
+  allow_implicit_invocation: true
