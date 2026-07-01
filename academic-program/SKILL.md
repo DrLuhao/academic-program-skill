@@ -3,77 +3,77 @@ name: academic-program
 description: Use when the user mentions developing, starting, managing, organizing, planning, coding, experimenting, summarizing, or writing a research or academic project, especially phrases like “开发科研项目”, “科研项目管理”, “论文项目”, “规划实验”, “写代码跑实验”, “总结实验结果”, “撰写科研论文”, or asks to standardize project files, code, references, experiments, and paper goals.
 ---
 
-# Academic Program Skill
+# 科研项目管理 Skill
 
-## Overview
+## 概述
 
-Use this skill to manage an academic research project from idea formation to project organization, experiment planning, code execution, result synthesis, and paper writing.
+使用本 skill 管理科研项目从想法形成、项目组织、实验规划、代码执行、结果总结到论文写作的完整流程。
 
-Core principle: every research project must first establish three root Markdown entry documents, then keep all code, data, references, experiments, results, and manuscript materials traceable to those documents.
+核心原则：每个科研项目必须先建立三个根目录 Markdown 入口文档，然后让代码、数据、参考文献、实验、结果、图表和论文材料都能追溯到这些文档。
 
-Secondary principle: define the research claim boundary before running code. A project must distinguish what the current data and method can prove, what is only a plausible interpretation, and what requires future evidence.
+第二原则：先定义研究结论边界，再运行代码。必须区分当前数据和方法已经证明了什么、哪些只是合理解释、哪些仍属于未来工作。
 
-## First Action
+## 首要动作
 
-When this skill triggers, start by locating the project root and checking whether these three root documents exist:
+当本 skill 触发时，先定位项目根目录，并检查以下三个根目录文档是否存在：
 
-1. `项目文件说明.md`
-2. `项目开发规则.md`
-3. `项目开发说明.md`
+1. `project-files.md`
+2. `project-rules.md`
+3. `project-plan.md`
 
-If any are missing, create or update them before doing substantial project work. If all exist, read them in that order before changing files, writing code, planning experiments, or drafting paper text.
+如果缺少任何一个，先创建或更新它们，再进行实质性项目工作。若三份文档都已存在，必须按上述顺序读取，然后再修改文件、写代码、规划实验或撰写论文。
 
-For reusable document outlines, read `references/project-doc-templates.md`.
+需要可复用文档大纲时，读取 `references/project-doc-templates.md`。
 
-## Three Required Documents
+## 三份必需文档
 
-Create or maintain these documents for every academic project:
+每个科研项目都要创建或维护以下文档：
 
-| Document | Purpose |
+| 文档 | 作用 |
 | --- | --- |
-| `项目文件说明.md` | Explain directory structure, where files belong, and the default entry points for future conversations. |
-| `项目开发规则.md` | Define rules for file naming, code style, experiment records, output paths, reference storage, verification, and collaboration. |
-| `项目开发说明.md` | Define the research topic, current hypothesis, paper target, development goals, experiment route, and near-term priorities. |
+| `project-files.md` | 说明目录结构、文件归属和未来对话的默认入口。 |
+| `project-rules.md` | 规定文件命名、代码风格、实验记录、输出路径、参考文献存储、验证和协作规则。 |
+| `project-plan.md` | 说明研究主题、当前假设、论文目标、开发目标、实验路线和近期优先级。 |
 
-Keep the documents concise enough to read at the start of each future session, but specific enough that another agent can continue the project without guessing.
+这些文档要足够简洁，便于每次新对话开始时快速阅读；也要足够具体，让另一个 agent 可以不靠猜测继续项目。
 
-## Research Workflow
+## 科研工作流
 
-Follow this sequence unless the user explicitly asks for a narrower task:
+除非用户明确要求更窄的任务，否则按以下顺序推进：
 
-1. **Idea and scope**: clarify the research question, paper target, core claim, available data, expected contribution, constraints, and what the project must not claim yet.
-2. **Project structure**: create the three root documents and decide where papers, code, data, references, docs, and outputs live.
-3. **Evidence plan**: map each intended paper claim to required data, scripts, metrics, figures, tables, negative controls, and validation checks.
-4. **Experiment plan**: write testable hypotheses, input data, labels or reference signals, train/validation/test splits, baselines, metrics, ablations, expected figures, and success criteria.
-5. **Code development**: implement code inside the project’s code directory, use relative paths, avoid duplicating shared data, and route outputs to the correct `outputs/` directory.
-6. **Experiment execution**: run scripts or notebooks with recorded parameters, seeds, input paths, output paths, environment notes, and failure conditions.
-7. **Result summary**: convert raw outputs into Markdown summaries that include purpose, settings, main findings, failure cases, limitations, and next steps.
-8. **Paper writing**: maintain manuscript, figures, tables, references, and experiment evidence so every claim can be traced back to code and results.
-9. **Review and revise**: compare paper claims with actual evidence, identify missing experiments, update plans, and iterate.
+1. **想法与范围**：明确研究问题、目标论文、核心主张、可用数据、预期贡献、约束条件，以及当前不能声称的内容。
+2. **项目结构**：创建三份根目录文档，并确定论文、代码、数据、参考文献、文档和输出分别放在哪里。
+3. **证据计划**：把每个计划写入论文的主张映射到需要的数据、脚本、指标、图表、负对照和验证检查。
+4. **实验计划**：写清可检验假设、输入数据、标签或参考信号、训练/验证/测试划分、baseline、指标、消融实验、预期图表和成功标准。
+5. **代码开发**：在项目代码目录中实现代码，使用相对路径，避免复制共享数据，并把输出写入正确的 `outputs/` 目录。
+6. **实验执行**：运行脚本或 notebook，并记录参数、随机种子、输入路径、输出路径、环境说明和失败条件。
+7. **结果总结**：把原始输出整理成 Markdown 总结，包含实验目的、设置、主要发现、失败案例、局限性和下一步。
+8. **论文写作**：维护稿件、图表、表格、参考文献和实验证据，让每个结论都能回溯到代码和结果。
+9. **审查与迭代**：对比论文主张和实际证据，识别缺失实验，更新计划并继续迭代。
 
-Do not skip from an idea directly to code if the project lacks the three root documents.
+如果项目还没有三份根目录文档，不要从想法直接跳到代码。
 
-## Claim Boundary Rules
+## 结论边界规则
 
-Before planning or writing a paper section, classify each claim:
+规划实验或撰写论文段落前，先分类每个主张：
 
-| Claim type | Meaning | Required handling |
+| 主张类型 | 含义 | 处理方式 |
 | --- | --- | --- |
-| Confirmed result | Directly supported by recorded experiments or verified analysis | Link to experiment record, code entry point, output path, and figure/table. |
-| Plausible interpretation | Reasonable explanation but not uniquely proven | State as interpretation and list what would verify or falsify it. |
-| Future work | Not demonstrated by current evidence | Keep out of results and conclusion claims; place in discussion or plan. |
+| 已证实结果 | 有记录实验或验证分析直接支持 | 链接到实验记录、代码入口、输出路径和图表。 |
+| 合理解释 | 解释合理，但并非唯一被证明 | 明确写成解释，并列出需要什么证据来验证或推翻。 |
+| 未来工作 | 当前证据尚未展示 | 不写进结果和结论主张，只放在讨论或计划中。 |
 
-If a proposed method depends on labels, metadata, ground truth, reference geometry, human annotations, or simulation assumptions, record the source and independence of that evidence. Do not describe a result as blind, general, causal, or end-to-end unless the experiment design actually supports that wording.
+如果方法依赖标签、元数据、真值、参考几何、人工标注或仿真假设，必须记录证据来源和独立性。除非实验设计真正支持，否则不要把结果描述为盲估计、泛化、因果、端到端或完全自动。
 
-## Directory Policy
+## 目录策略
 
-Prefer a simple structure adapted to the project:
+优先使用简单且适合项目的结构：
 
 ```text
 project-root/
-  项目文件说明.md
-  项目开发规则.md
-  项目开发说明.md
+  project-files.md
+  project-rules.md
+  project-plan.md
   docs/
   paper/
   references/
@@ -82,7 +82,7 @@ project-root/
   outputs/
 ```
 
-For multi-line research projects, use numbered research-line folders:
+对于多研究线项目，使用编号研究线目录：
 
 ```text
 project-root/
@@ -91,69 +91,69 @@ project-root/
   03_shared_data/
 ```
 
-Use names that match the project language and discipline. Keep shared large datasets in one shared data directory and reference them from code; do not copy large raw data into each method folder.
+目录名应符合项目语言和学科习惯。大型共享数据只保留一份，并由代码引用；不要把大型原始数据复制到每个方法目录。
 
-## Code Rules
+## 代码规则
 
-- Use project-root-relative paths or clearly documented config paths.
-- Put reusable code under the chosen `code/` directory.
-- Put generated figures, metrics, logs, and intermediate experiment artifacts under `outputs/`.
-- Record every script entry point and key parameters in an experiment note.
-- Add validation gates for fragile inputs: dimensions, file formats, missing values, label validity, train/test leakage, duplicated samples, and coordinate or metadata consistency.
-- If validation fails, stop and write a failure record instead of producing polished but invalid outputs.
-- Before claiming completion, run the relevant verification command and report what passed or what failed.
-- Avoid unrelated refactors while doing research experiments; preserve comparability.
+- 使用项目根目录相对路径，或清楚记录配置路径。
+- 可复用代码放入项目选定的 `code/` 目录。
+- 生成的图、指标、日志和中间实验产物放入 `outputs/`。
+- 在实验记录中记录每个脚本入口和关键参数。
+- 对脆弱输入设置校验门槛：维度、文件格式、缺失值、标签合法性、训练/测试泄漏、重复样本、坐标或元数据一致性。
+- 如果校验失败，停止并写失败记录，不要继续生成看似正式但无效的输出。
+- 声称完成前，运行相关验证命令，并报告通过或失败的内容。
+- 做研究实验时避免无关重构，保持实验可比性。
 
-## Experiment Record Rules
+## 实验记录规则
 
-Each experiment record must include:
+每条实验记录必须包含：
 
-- Purpose or hypothesis
-- Input data and version
-- Label, reference, annotation, or ground-truth source, if any
-- Data split rule and leakage prevention rule, if the experiment trains or evaluates a model
-- Code entry point and command
-- Parameters, random seed, and environment notes
-- Output directory
-- Metrics and figures produced
-- Main conclusion
-- Failure cases or limitations
-- Next action
+- 目的或假设
+- 输入数据和版本
+- 标签、参考、标注或真值来源，如适用
+- 数据划分规则和防泄漏规则，如涉及训练或评估模型
+- 代码入口和命令
+- 参数、随机种子和环境说明
+- 输出目录
+- 产生的指标和图表
+- 主要结论
+- 失败案例或局限性
+- 下一步动作
 
-Store experiment records under `docs/` or the relevant research-line `docs/`. Do not rely on terminal history as the only record.
+实验记录放在 `docs/` 或相关研究线的 `docs/` 中。不要把终端历史当作唯一记录。
 
-For model-based projects, prefer split rules that match the scientific question. For example, split by scene, subject, patient, instrument, site, or time when random sample-level splitting would leak context from training into testing.
+对于模型项目，数据划分应匹配科学问题。例如当随机样本级划分会导致上下文泄漏时，应按场景、受试者、仪器、地点或时间划分。
 
-## Reference and Paper Rules
+## 参考文献和论文规则
 
-- Store PDFs, BibTeX, RIS, reading notes, and citation exports under `references/`.
-- Store manuscript files, figures, tables, and paper-specific assets under `paper/`.
-- Keep conference papers, journal papers, and thesis materials separate when they serve different claims.
-- Track which experiment supports each figure, table, and major claim.
-- Distinguish confirmed results, plausible interpretation, and future work.
-- Keep paper figures reproducible from scripts whenever possible. Save both the final figure and the data or configuration used to generate it.
-- For manuscript figures, use consistent sizing, legible fonts, and caption-driven titles. Avoid putting large explanatory titles inside the figure unless the target format requires it.
+- PDF、BibTeX、RIS、阅读笔记和引用导出放入 `references/`。
+- 稿件、图表、表格和论文专用资产放入 `paper/`。
+- 服务于不同主张的会议论文、期刊论文和学位论文材料要分开维护。
+- 追踪每张图、每个表格和每个主要结论由哪个实验支撑。
+- 区分已证实结果、合理解释和未来工作。
+- 论文图尽可能由脚本复现。保存最终图，也保存生成它所用的数据或配置。
+- 稿件图要保持尺寸一致、字体清晰、标题由 caption 承担。除非目标格式要求，不要在图内放大型解释性标题。
 
-## Common Mistakes
+## 常见错误
 
-| Mistake | Correction |
+| 错误 | 修正 |
 | --- | --- |
-| Starting code before project documents exist | Create the three root Markdown documents first. |
-| Saving outputs in random root folders | Route outputs to the correct `outputs/` directory and record the path. |
-| Mixing short-paper and journal-paper goals | Split goals in `项目开发说明.md` and separate paper folders if needed. |
-| Copying large shared datasets into method folders | Keep one shared data source and reference it. |
-| Writing paper claims from memory | Link claims to experiment records, scripts, figures, or tables. |
-| Calling a candidate-selection experiment an end-to-end method | State exactly what the input is, what is selected or estimated, and what remains unproven. |
-| Treating dependent metadata or labels as independent ground truth | Record evidence provenance and limit the claim boundary. |
-| Hiding failed validation | Write a failure record and make the next action explicit. |
-| Randomly splitting correlated samples | Split by the unit needed for the scientific claim, such as scene, subject, or time. |
+| 项目文档不存在就开始写代码 | 先创建三份根目录 Markdown 文档。 |
+| 输出散落在随机根目录 | 输出写入正确的 `outputs/` 目录，并记录路径。 |
+| 混合短论文和长论文目标 | 在 `project-plan.md` 中拆分目标，并在必要时分离论文目录。 |
+| 把大型共享数据复制进多个方法目录 | 保留一个共享数据源，并从代码中引用。 |
+| 凭记忆写论文结论 | 将结论链接到实验记录、脚本、图或表。 |
+| 把候选选择实验说成端到端方法 | 明确输入是什么、选择或估计了什么、还有什么没有证明。 |
+| 把非独立元数据或标签当成独立真值 | 记录证据来源，并限制结论边界。 |
+| 隐藏失败校验 | 写失败记录，并明确下一步动作。 |
+| 对强相关样本随机划分 | 按科学主张需要的单位划分，如场景、受试者或时间。 |
 
-## Completion Check
+## 完成检查
 
-Before ending a research-project task, report:
+结束科研项目任务前，报告：
 
-- Which of the three root documents were read, created, or updated.
-- Which files, code, experiments, outputs, or paper sections changed.
-- Which claim boundary or evidence map was updated, if paper claims or conclusions changed.
-- What verification was run.
-- What the next research step should be.
+- 三份根目录文档中哪些被读取、创建或更新。
+- 哪些文件、代码、实验、输出或论文段落发生了变化。
+- 如果论文结论或主张发生变化，更新了哪些结论边界或证据映射。
+- 运行了什么验证。
+- 下一步研究应该做什么。

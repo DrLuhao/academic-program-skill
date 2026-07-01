@@ -1,87 +1,81 @@
-# Academic Program Skill
+# 科研项目管理 Skill
 
-`academic-program` is a Codex skill for managing academic research projects from early ideas to structured experiments, reproducible code, result summaries, and manuscript writing.
+`academic-program` 是一个用于 Codex 的科研项目管理 skill，目标是把一个科研项目从早期想法、项目文件整理、实验规划、代码执行、结果总结，一直推进到论文写作和证据追踪。
 
-It is designed for research work that can easily become scattered across papers, scripts, data folders, figures, temporary outputs, and chat history. The skill enforces a lightweight but durable project workflow: every research project starts with three root Markdown documents, then keeps experiments, outputs, references, figures, and paper claims traceable back to those documents.
+它适合那些容易在论文、脚本、数据、图表、临时输出和对话记录之间变得分散的研究项目。这个 skill 会要求每个科研项目先建立三个英文文件名的根目录入口文档，然后让代码、数据、参考文献、实验记录、输出结果、图表和论文结论都能回到这些文档中追踪。
 
-## Purpose
+## 设计目的
 
-Academic projects often fail to progress cleanly because the research question, file layout, experiment records, and paper claims drift apart. This skill helps Codex keep those parts connected.
+很多科研项目的问题不是“没有想法”，而是研究问题、文件结构、实验记录和论文主张逐渐分离：
 
-Use it when you want to:
+- 文件放置没有统一规则，后续对话很难快速接上。
+- 实验跑完后只留下终端历史或零散图片，缺少可复现记录。
+- 论文结论来自记忆，而不是来自清晰的代码、指标和输出文件。
+- 结果、解释和未来工作混在一起，容易在写作时过度声称。
 
-- Start a new academic or scientific research project.
-- Standardize an existing research project folder.
-- Plan experiments before writing code.
-- Run code-driven experiments while preserving reproducibility.
-- Summarize experimental results into durable Markdown records.
-- Prepare figures, tables, references, and manuscript sections.
-- Keep paper claims linked to actual evidence instead of memory.
-- Separate confirmed findings, plausible interpretations, and future work.
+`academic-program` 的作用就是为 Codex 提供一套轻量但稳定的科研项目工作流，让后续每次协作都先读项目入口文档，再基于已有证据继续推进。
 
-## What It Does
+## 三个根目录入口文档
 
-The skill guides Codex to create or maintain three project-entry documents:
+该 skill 会创建或维护三个英文文件名的根目录 Markdown 文档：
 
-| File | Role |
+| 文件名 | 作用 |
 | --- | --- |
-| `项目文件说明.md` | Explains the project directory structure and where materials belong. |
-| `项目开发规则.md` | Defines rules for naming, code style, experiment records, outputs, references, verification, and collaboration. |
-| `项目开发说明.md` | Describes the research topic, current hypothesis, paper target, experiment route, and near-term priorities. |
+| `project-files.md` | 说明项目目录结构、文件归属和后续对话的默认查找入口。 |
+| `project-rules.md` | 规定文件命名、代码开发、实验记录、输出路径、参考文献、验证和协作规则。 |
+| `project-plan.md` | 说明研究主题、当前假设、论文目标、实验路线、开发目标和近期优先级。 |
 
-After those documents exist, Codex should read them at the start of future research tasks before changing code, running experiments, or drafting paper text.
+以后每次新对话或新任务开始时，Codex 应先按顺序读取这三个文件，再修改代码、规划实验或撰写论文内容。
 
-## Core Workflow
+## 核心功能
 
-The skill organizes research work into a repeatable sequence:
+- 初始化科研项目的三份根目录管理文档。
+- 规范 `docs/`、`paper/`、`references/`、`code/`、`data/`、`outputs/` 等目录分工。
+- 在写代码前先明确研究问题、目标论文、核心假设和当前结论边界。
+- 把实验计划写成可执行任务，包括数据、标签、baseline、指标、消融、负对照和成功标准。
+- 要求每次实验记录输入数据、代码入口、参数、随机种子、输出目录、图表、结论、失败原因和下一步。
+- 为脆弱输入设置校验门槛，例如文件格式、缺失值、标签合法性、重复样本、训练/测试泄漏和元数据一致性。
+- 将论文主张映射到实验记录、代码入口、输出文件、图表和表格。
+- 区分已证实结果、合理解释和未来工作，减少论文写作中的过度声称。
+- 在任务结束时报告读过或更新了哪些根文档、改了哪些文件、跑了什么验证、下一步研究该做什么。
 
-1. Define the research question, expected contribution, constraints, and claim boundary.
-2. Create or repair the three root Markdown entry documents.
-3. Map intended paper claims to required evidence, scripts, figures, tables, and validation checks.
-4. Plan experiments with data sources, labels, baselines, metrics, ablations, splits, and success criteria.
-5. Implement code under a clear project directory, using relative paths and reproducible outputs.
-6. Run experiments with recorded commands, parameters, seeds, environment notes, and failure conditions.
-7. Summarize results into Markdown records with findings, limitations, failure cases, and next steps.
-8. Write or revise manuscript sections while tracing each claim back to recorded evidence.
-9. Review the gap between paper claims and experimental support before declaring progress complete.
+## 推荐工作流
 
-## Key Features
+1. 明确研究问题、目标论文、核心贡献、已有数据、约束条件，以及当前不能声称的内容。
+2. 创建或修复 `project-files.md`、`project-rules.md`、`project-plan.md`。
+3. 建立证据链，把计划写进论文的主张映射到数据、代码、指标、图表、表格和验证方式。
+4. 规划实验，明确数据来源、标签或参考真值、数据划分、baseline、评价指标、消融实验、负对照和成功标准。
+5. 在项目代码目录中实现脚本，使用相对路径，避免复制大型共享数据，并把输出写入明确的 `outputs/` 目录。
+6. 运行实验并记录命令、参数、随机种子、环境、输入路径、输出路径和失败条件。
+7. 把结果整理成 Markdown 实验记录，包括主要发现、失败案例、局限性和下一步。
+8. 撰写或修改论文时，让每个主要结论都能追溯到实验记录、脚本、输出文件和图表。
+9. 结束前检查论文主张是否超过现有证据支持范围。
 
-- Three-document project entry system.
-- Directory and naming conventions for research projects.
-- Experiment-record template for reproducible scientific work.
-- Claim-boundary rules for avoiding overclaiming.
-- Evidence mapping from paper claims to experiments, code, figures, and tables.
-- Data validation gates for fragile research inputs.
-- Model-evaluation guidance, including split and leakage prevention.
-- Reference and manuscript organization rules.
-- Completion checklist for reporting what changed and what was verified.
+## 安装方式
 
-## Installation
-
-Copy the `academic-program` folder into your Codex skills directory:
+将 `academic-program` 文件夹复制到 Codex skills 目录：
 
 ```powershell
 Copy-Item -Recurse .\academic-program "$env:USERPROFILE\.codex\skills\academic-program"
 ```
 
-Restart Codex if the skill list does not refresh immediately.
+如果 Codex 的 skill 列表没有立即刷新，重启 Codex 后通常即可识别。
 
-## Example Prompts
+## 使用示例
 
 ```text
-Use $academic-program to initialize this research project and create the three root Markdown documents.
+使用 academic-program 帮我开发一个科研项目，先整理项目文件和实验计划。
 ```
 
 ```text
-Use $academic-program to plan experiments for this paper idea before writing code.
+使用 academic-program 帮我规划这个论文想法的实验路线，先不要直接写代码。
 ```
 
 ```text
-Use $academic-program to summarize these experiment results and update the claim-evidence map.
+使用 academic-program 总结这次实验结果，并更新证据链与论文主张映射。
 ```
 
-## Repository Structure
+## 仓库结构
 
 ```text
 academic-program-skill/
@@ -94,6 +88,6 @@ academic-program-skill/
       project-doc-templates.md
 ```
 
-## Notes
+## 适用范围
 
-This skill is intentionally domain-neutral. It does not encode any project-specific dataset, method, paper topic, or private research detail. It provides a reusable workflow for academic project development across disciplines.
+这个 skill 是通用的科研项目管理工作流，不绑定任何具体学科、数据集、论文题目或个人研究内容。它适合用于论文项目、实验型代码项目、数据集整理项目、方法验证项目、投稿前自审和长期研究线管理。

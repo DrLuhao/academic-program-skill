@@ -1,7 +1,7 @@
 interface:
-  display_name: "Academic Program Skill"
-  short_description: "Manage academic research project workflows"
-  default_prompt: "Use $academic-program to initialize or continue a research project with structured files, evidence-traced experiments, code, results, and paper writing."
+  display_name: "科研项目管理 Skill"
+  short_description: "管理科研项目、实验记录和论文写作"
+  default_prompt: "Use $academic-program 帮我初始化或继续一个科研项目，规范项目文件、实验证据、代码、结果和论文写作。"
 
 policy:
   allow_implicit_invocation: true

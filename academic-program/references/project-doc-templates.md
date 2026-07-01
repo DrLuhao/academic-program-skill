@@ -1,19 +1,19 @@
-# Project Document Templates
+# 项目文档模板
 
-Use these outlines when initializing or repairing an academic research project. Adapt names, directories, and paper targets to the actual project. Final project documents must be complete, specific, and ready for future sessions to read.
+初始化或修复科研项目时使用以下大纲。文件名使用英文，正文使用中文。请根据实际项目调整目录、论文目标和研究路线；最终项目文档必须具体、完整，并能直接供后续会话阅读。
 
-## `项目文件说明.md`
+## `project-files.md`
 
 ```markdown
-# 项目文件说明
+# Project Files
 
 ## 后续对话启动必读文档
 
 后续每次新对话或新任务开始时，先按顺序阅读根目录三份文档：
 
-1. `项目文件说明.md`：了解项目目录、文件分工和默认查找入口。
-2. `项目开发规则.md`：了解文件管理、实验记录、代码开发、论文写作和协作规则。
-3. `项目开发说明.md`：了解当前研究路线、论文目标、实验路线和开发优先级。
+1. `project-files.md`：了解项目目录、文件分工和默认查找入口。
+2. `project-rules.md`：了解文件管理、实验记录、代码开发、论文写作和协作规则。
+3. `project-plan.md`：了解当前研究路线、论文目标、实验路线和开发优先级。
 
 ## 项目主要目的
 
@@ -37,26 +37,26 @@ Use these outlines when initializing or repairing an academic research project. 
 
 ## 后续对话使用建议
 
-- 问研究路线和论文目标：先看 `项目开发说明.md`。
-- 问文件放置和开发规范：先看 `项目开发规则.md`。
+- 问研究路线和论文目标：先看 `project-plan.md`。
+- 问文件放置和开发规范：先看 `project-rules.md`。
 - 问目录和材料入口：先看本文件。
 ```
 
-## `项目开发规则.md`
+## `project-rules.md`
 
 ```markdown
-# 项目开发规则
+# Project Rules
 
 ## 每次对话启动阅读顺序
 
-先读 `项目文件说明.md`，再读 `项目开发规则.md`，最后读 `项目开发说明.md`。
+先读 `project-files.md`，再读 `project-rules.md`，最后读 `project-plan.md`。
 
 ## 文件命名规范
 
-- 计划：`YYYY-MM-DD_研究主题_计划_v01.md`
-- 实验记录：`YYYY-MM-DD_实验名_记录_v01.md`
-- 输出目录：`YYYY-MM-DD_实验名_关键参数_v01/`
-- 论文图表：`figN_图表主题_v01.ext`
+- 计划：`YYYY-MM-DD_research-topic_plan_v01.md`
+- 实验记录：`YYYY-MM-DD_experiment-name_record_v01.md`
+- 输出目录：`YYYY-MM-DD_experiment-name_key-params_v01/`
+- 论文图表：`figN_figure-topic_v01.ext`
 
 ## 目录放置规范
 
@@ -90,10 +90,10 @@ Use these outlines when initializing or repairing an academic research project. 
 新任务先判断属于研究构思、实验规划、代码执行、结果总结、论文写作，还是投稿修改。
 ```
 
-## `项目开发说明.md`
+## `project-plan.md`
 
 ```markdown
-# 项目开发说明
+# Project Plan
 
 ## 项目总体目标
 
@@ -113,7 +113,7 @@ Use these outlines when initializing or repairing an academic research project. 
 
 列出数据、baseline、方法版本、评价指标、消融实验、负对照或鲁棒性测试。
 
-## 证据链与 claim map
+## 证据链与论文主张映射
 
 | 论文主张 | 支撑实验/分析 | 输出文件 | 当前状态 |
 | --- | --- | --- | --- |
