@@ -1,7 +1,7 @@
 interface:
   display_name: "科研项目管理 Skill"
-  short_description: "按需维护科研工作区、当前计划和实验证据，减少重复文档与上下文读取"
-  default_prompt: "使用 $academic-program 继续我的科研项目，复用现有入口，按需维护文件规范、当前任务和实验证据。"
+  short_description: "长期跟踪科研目标、方向漂移、阶段决策、创新候选和实验证据"
+  default_prompt: "使用 $academic-program 续接我的科研项目，核对核心目标与当前工作，识别方向漂移和阶段创新候选，并更新必要的证据与下一步。"
 
 policy:
   allow_implicit_invocation: true
