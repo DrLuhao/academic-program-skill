@@ -1,5 +1,7 @@
 <div align="center">
 
+**简体中文** · [English](./README_EN.md)
+
 # 🧭 academic-program
 
 **让 Codex 长期跟踪科研目标、守住研究主线，并把每个阶段的证据转化为下一步与创新候选。**
@@ -192,6 +194,8 @@ cp -R ./academic-program/. "$skill_target/"
 ## 仓库结构
 
 ```text
+README.md
+README_EN.md
 academic-program/
 ├── SKILL.md
 ├── agents/
@@ -215,6 +219,7 @@ academic-program/
 - **候选不等于创新成立**：项目内新现象必须经过证据和相关工作对照。
 - **失败也是证据**：保留 RED、`PARTIAL`、`FAIL` 和有信息量的负结果。
 - **文档服务决策**：不以文件数量、固定流程或形式化台账作为完成标准。
+- **语言跟随项目**：按用户选择或项目既有主语言输出，不强制固定语言。
 
 设计参考了 OpenAI 关于 Skill 描述、渐进披露、决策边界和持续执行的建议：[Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)。
 
