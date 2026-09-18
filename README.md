@@ -4,10 +4,11 @@
 
 # 🧭 academic-program
 
-**让 Codex 长期跟踪科研目标、守住研究主线，并把每个阶段的证据转化为下一步与创新候选。**
+**面向 Codex、Claude Code 等研究 Agent：长期跟踪科研目标、守住研究主线，并把每个阶段的证据转化为下一步与创新候选。**
 
-![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827?style=for-the-badge&logo=openai&logoColor=white)
-![Research](https://img.shields.io/badge/Research-Long--term_tracking-0F766E?style=for-the-badge)
+![Agent Skill](https://img.shields.io/badge/Agent-Skill-111827?style=for-the-badge)
+![Codex](https://img.shields.io/badge/Codex-compatible-0F766E?style=for-the-badge&logo=openai&logoColor=white)
+![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-D97757?style=for-the-badge)
 ![Evidence](https://img.shields.io/badge/Evidence-Traceable-2563EB?style=for-the-badge)
 
 轻量项目管理 · 方向漂移检测 · 阶段创新扫描 · 分层实验验收 · 主张—证据追踪
@@ -27,6 +28,18 @@
 - 论文中的每项主张能否回到实验、配置和结果？
 
 `academic-program` 将这些判断维护在一个轻量、可续接的科研工作区中。它不会强制创建一整套管理文档，也不会为普通问答扫描整个项目。
+
+## 兼容的 Agent
+
+核心能力由标准的 `SKILL.md` 和按需加载的 `references/` 提供，不依赖某个模型或厂商专属运行时。
+
+| 宿主 | 使用方式 | 宿主特有内容 |
+| --- | --- | --- |
+| Codex | 从用户级或项目级 Skills 目录发现，可用 `$academic-program` 显式调用 | `agents/openai.yaml` 提供可选的 OpenAI/Codex 界面元数据。 |
+| Claude Code | 从个人 `~/.claude/skills/` 或项目 `.claude/skills/` 自动发现 | 不需要 `openai.yaml`；核心工作流仍由 `SKILL.md` 和引用文件提供。 |
+| 其他 Agent Skills 兼容宿主 | 将完整 `academic-program/` 目录放入宿主支持的 Skills 位置 | 调用语法和安装路径以宿主文档为准。 |
+
+同一个科研仓库可以被不同 Agent 使用。项目级稳定规则只维护一份正文；`AGENTS.md`、`CLAUDE.md` 等宿主入口按需保留简短适配或转向，避免规则分叉。
 
 ## 工作方式
 
@@ -147,48 +160,65 @@ Skill 只在续接项目、规划或总结实验、阶段转换和研究方向�
 | 项目情况 | 默认入口 |
 | --- | --- |
 | 一次性咨询或分析 | 不创建管理文档 |
-| 小型持续项目 | `AGENTS.md`：稳定约定，可附简短当前工作 |
-| 持续科研项目 | `AGENTS.md`：稳定约定；`PROJECT.md`：研究罗盘和当前状态 |
+| 小型持续项目 | 当前宿主的 agent 指令文件（如 `AGENTS.md` 或 `CLAUDE.md`） |
+| 持续科研项目 | 一份稳定 agent 指令入口；`PROJECT.md` 保存研究罗盘和当前状态 |
 | 已有项目 | 复用现有入口，兼容旧结构，不自动迁移 |
 
-`AGENTS.md` 只保存项目特有的目录、运行/验证入口和稳定约束。`PROJECT.md` 保存研究罗盘、当前阶段、近期任务、活跃创新候选、阻塞项和证据链接。详细实验历史独立保存，按需读取。
+Agent 指令文件只保存项目特有的目录、运行/验证入口和稳定约束。`PROJECT.md` 保存研究罗盘、当前阶段、近期任务、活跃创新候选、阻塞项和证据链接。详细实验历史独立保存，按需读取。
 
 ## 安装或更新
 
-克隆仓库后，在仓库根目录执行。
+克隆仓库后，将完整的 `academic-program/` 目录复制到宿主支持的 Skills 位置：
+
+| 宿主 | 用户级目录 | 项目级目录 |
+| --- | --- | --- |
+| Codex | `~/.agents/skills/academic-program` | `<repo>/.agents/skills/academic-program` |
+| Claude Code | `~/.claude/skills/academic-program` | `<repo>/.claude/skills/academic-program` |
+
+下面示例安装到用户级目录；每个代码块只执行与你的宿主对应的三行。
 
 **PowerShell**
 
 ```powershell
-$skillTarget = Join-Path $env:USERPROFILE '.codex\skills\academic-program'
+# Codex
+$skillTarget = Join-Path $env:USERPROFILE '.agents\skills\academic-program'
 New-Item -ItemType Directory -Force -Path $skillTarget | Out-Null
 Copy-Item -Path '.\academic-program\*' -Destination $skillTarget -Recurse -Force
+
+# Claude Code
+$claudeSkillTarget = Join-Path $env:USERPROFILE '.claude\skills\academic-program'
+New-Item -ItemType Directory -Force -Path $claudeSkillTarget | Out-Null
+Copy-Item -Path '.\academic-program\*' -Destination $claudeSkillTarget -Recurse -Force
 ```
 
 **macOS / Linux**
 
 ```bash
-skill_target="${CODEX_HOME:-$HOME/.codex}/skills/academic-program"
-mkdir -p "$skill_target"
-cp -R ./academic-program/. "$skill_target/"
+# Codex
+mkdir -p "$HOME/.agents/skills/academic-program"
+cp -R ./academic-program/. "$HOME/.agents/skills/academic-program/"
+
+# Claude Code
+mkdir -p "$HOME/.claude/skills/academic-program"
+cp -R ./academic-program/. "$HOME/.claude/skills/academic-program/"
 ```
 
 ## 使用示例
 
 ```text
-使用 $academic-program 续接这个科研项目，先核对研究罗盘，再判断当前工作是否偏离核心目标。
+使用 academic-program skill 续接这个科研项目，先核对研究罗盘，再判断当前工作是否偏离核心目标。
 ```
 
 ```text
-使用 $academic-program 总结本阶段实验：区分硬否决和软门槛，提炼创新候选，并给出下一项决定性验证。
+使用 academic-program skill 总结本阶段实验：区分硬否决和软门槛，提炼创新候选，并给出下一项决定性验证。
 ```
 
 ```text
-使用 $academic-program 检查最近一个月的工作是否仍在推进核心科学问题；发现漂移时给出最小纠偏方案，不要自动修改研究目标。
+使用 academic-program skill 检查最近一个月的工作是否仍在推进核心科学问题；发现漂移时给出最小纠偏方案，不要自动修改研究目标。
 ```
 
 ```text
-使用 $academic-program 整理已有项目，复用现有文档和目录，不移动原始数据，不创建重复台账。
+使用 academic-program skill 整理已有项目，复用现有文档和目录，不移动原始数据，不创建重复台账。
 ```
 
 ## 仓库结构
@@ -199,7 +229,7 @@ README_EN.md
 academic-program/
 ├── SKILL.md
 ├── agents/
-│   └── openai.yaml
+│   └── openai.yaml  # 可选的 OpenAI/Codex 界面元数据
 └── references/
     ├── direction-innovation.md
     ├── experiment-evidence.md
@@ -221,7 +251,7 @@ academic-program/
 - **文档服务决策**：不以文件数量、固定流程或形式化台账作为完成标准。
 - **语言跟随项目**：按用户选择或项目既有主语言输出，不强制固定语言。
 
-设计参考了 OpenAI 关于 Skill 描述、渐进披露、决策边界和持续执行的建议：[Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)。
+跨宿主结构依据 [OpenAI Docs：Build skills](https://learn.chatgpt.com/docs/build-skills) 和 [Claude Platform Docs：Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)；轻量化设计同时参考了 [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)。
 
 ## 提醒能力边界
 

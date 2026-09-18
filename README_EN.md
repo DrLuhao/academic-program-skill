@@ -4,10 +4,11 @@
 
 # 🧭 academic-program
 
-**Keep long-running research anchored to its core question, and turn every stage of evidence into the next decision and a set of testable innovation candidates.**
+**A research-management Skill for Codex, Claude Code, and other compatible agents—keeping long-running work anchored to its core question and turning each stage of evidence into the next decision.**
 
-![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827?style=for-the-badge&logo=openai&logoColor=white)
-![Research](https://img.shields.io/badge/Research-Long--term_tracking-0F766E?style=for-the-badge)
+![Agent Skill](https://img.shields.io/badge/Agent-Skill-111827?style=for-the-badge)
+![Codex](https://img.shields.io/badge/Codex-compatible-0F766E?style=for-the-badge&logo=openai&logoColor=white)
+![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-D97757?style=for-the-badge)
 ![Evidence](https://img.shields.io/badge/Evidence-Traceable-2563EB?style=for-the-badge)
 
 Lightweight project management · Direction-drift detection · Stage-level innovation review · Layered experiment acceptance · Claim-to-evidence traceability
@@ -27,6 +28,18 @@ What long-running research loses most easily is not files, but judgment:
 - Can every paper claim be traced back to experiments, configurations, and results?
 
 `academic-program` maintains these decisions in a lightweight, resumable research workspace. It does not force a full documentation stack or scan the entire project for ordinary questions.
+
+## Compatible agents
+
+The core workflow is defined by a standard `SKILL.md` and progressively loaded `references/`. It does not depend on a provider-specific model or runtime.
+
+| Host | How it is used | Host-specific content |
+| --- | --- | --- |
+| Codex | Discovered from user- or repository-level Skills directories; can be invoked explicitly as `$academic-program` | `agents/openai.yaml` provides optional OpenAI/Codex UI metadata. |
+| Claude Code | Discovered from personal `~/.claude/skills/` or project `.claude/skills/` directories | Does not require `openai.yaml`; the core workflow remains in `SKILL.md` and its references. |
+| Other Agent Skills-compatible hosts | Place the complete `academic-program/` directory in a supported Skills location | Invocation syntax and install paths follow the host's documentation. |
+
+The same research repository can be used by multiple agents. Maintain one authoritative body of stable project rules; use `AGENTS.md`, `CLAUDE.md`, or other host entry points only as short adapters when needed, so the rules do not diverge.
 
 ## How it works
 
@@ -150,51 +163,68 @@ The method improves consistently under high-SNR conditions but loses its effect 
 | Project type | Default entry point |
 | --- | --- |
 | One-off consultation or analysis | Create no management document |
-| Small ongoing project | `AGENTS.md` for stable conventions and optionally a short current-work note |
-| Long-running research project | `AGENTS.md` for stable conventions; `PROJECT.md` for the research compass and current state |
+| Small ongoing project | The current host's agent instruction file, such as `AGENTS.md` or `CLAUDE.md` |
+| Long-running research project | One stable agent-instruction entry point; `PROJECT.md` for the research compass and current state |
 | Existing project | Reuse existing entry points and remain compatible with legacy structures; do not migrate automatically |
 
-`AGENTS.md` stores only project-specific directories, run/validation entry points, and stable constraints. `PROJECT.md` stores the research compass, current stage, near-term tasks, active innovation candidates, blockers, and evidence links. Detailed experiment history remains separate and is loaded only when needed.
+The agent instruction file stores only project-specific directories, run/validation entry points, and stable constraints. `PROJECT.md` stores the research compass, current stage, near-term tasks, active innovation candidates, blockers, and evidence links. Detailed experiment history remains separate and is loaded only when needed.
 
 ## Install or update
 
-Clone the repository, then run the appropriate command from the repository root.
+Clone the repository, then copy the complete `academic-program/` directory to a Skills location supported by your host:
+
+| Host | User scope | Project scope |
+| --- | --- | --- |
+| Codex | `~/.agents/skills/academic-program` | `<repo>/.agents/skills/academic-program` |
+| Claude Code | `~/.claude/skills/academic-program` | `<repo>/.claude/skills/academic-program` |
+
+The examples below use user scope. In each code block, run only the three lines for your host.
 
 **PowerShell**
 
 ```powershell
-$skillTarget = Join-Path $env:USERPROFILE '.codex\skills\academic-program'
+# Codex
+$skillTarget = Join-Path $env:USERPROFILE '.agents\skills\academic-program'
 New-Item -ItemType Directory -Force -Path $skillTarget | Out-Null
 Copy-Item -Path '.\academic-program\*' -Destination $skillTarget -Recurse -Force
+
+# Claude Code
+$claudeSkillTarget = Join-Path $env:USERPROFILE '.claude\skills\academic-program'
+New-Item -ItemType Directory -Force -Path $claudeSkillTarget | Out-Null
+Copy-Item -Path '.\academic-program\*' -Destination $claudeSkillTarget -Recurse -Force
 ```
 
 **macOS / Linux**
 
 ```bash
-skill_target="${CODEX_HOME:-$HOME/.codex}/skills/academic-program"
-mkdir -p "$skill_target"
-cp -R ./academic-program/. "$skill_target/"
+# Codex
+mkdir -p "$HOME/.agents/skills/academic-program"
+cp -R ./academic-program/. "$HOME/.agents/skills/academic-program/"
+
+# Claude Code
+mkdir -p "$HOME/.claude/skills/academic-program"
+cp -R ./academic-program/. "$HOME/.claude/skills/academic-program/"
 ```
 
 ## Usage examples
 
 ```text
-Use $academic-program to resume this research project. Check the research compass first,
+Use the academic-program skill to resume this research project. Check the research compass first,
 then determine whether the current work has drifted from the core objective.
 ```
 
 ```text
-Use $academic-program to summarize this experiment stage. Separate hard vetoes from soft gates,
+Use the academic-program skill to summarize this experiment stage. Separate hard vetoes from soft gates,
 identify innovation candidates, and propose the next decisive validation.
 ```
 
 ```text
-Use $academic-program to review whether the last month of work still advances the core scientific
+Use the academic-program skill to review whether the last month of work still advances the core scientific
 question. If it has drifted, propose the smallest correction without changing the research objective.
 ```
 
 ```text
-Use $academic-program to organize this existing project. Reuse its documents and directories,
+Use the academic-program skill to organize this existing project. Reuse its documents and directories,
 do not move raw data, and do not create duplicate ledgers.
 ```
 
@@ -206,7 +236,7 @@ README_EN.md
 academic-program/
 ├── SKILL.md
 ├── agents/
-│   └── openai.yaml
+│   └── openai.yaml  # optional OpenAI/Codex UI metadata
 └── references/
     ├── direction-innovation.md
     ├── experiment-evidence.md
@@ -228,7 +258,7 @@ academic-program/
 - **Documents serve decisions:** File counts, fixed itineraries, and formal ledgers are not completion criteria.
 - **Language follows the project:** The skill responds in the user's chosen language or the project's established primary language.
 
-The design follows OpenAI's guidance on concise skill descriptions, progressive disclosure, decision boundaries, and persistence: [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra).
+Cross-host structure follows [OpenAI Docs: Build skills](https://learn.chatgpt.com/docs/build-skills) and [Claude Platform Docs: Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview). The lightweight design also draws on [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra).
 
 ## Reminder boundary
 
